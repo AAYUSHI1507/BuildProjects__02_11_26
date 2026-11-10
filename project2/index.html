@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Practice Test </title>
+    <style>
+        .start-screen.active,
+        .quizQuestionScreen.active {
+            display: block;
+        }
+
+        .quizQuestionScreen .inactive,
+        .start-screen.inactive {
+            display: none;
+        }
+
+        /* Add your CSS styles here */
+        .start-screen,
+        .quizQuestionScreen {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="start-screen active">
+            <h1>Quiz Practice Test</h1>
+            <p>Test Your Knowledge with this fun questions</p>
+            <button id="start-btn">Start Quiz</button>
+        </div>
+        <div class="quizQuestionScreen inactive">
+            <div class="quizHead">
+                <h2 class="question-text">Question Goes Here</h2>
+
+                <p class="question-number">Question <span>0</span> of 3</p>
+                <p class="score">Score: <span>0</span></p>
+            </div>
+            <div id="answerOptions" class="answerOptions">
+                <p class="option"></p>
+            </div>
+        </div>
+    </div>
+
+</body>
+<script>
+    //all my javascript code here.
+    const btn = document.getElementById("start-btn");
+    const startScreen = document.querySelector(".start-screen");
+    const quizQuestionScreen = document.querySelector(".quizQuestionScreen");
+
+    //Start button click event listner.
+    //start button clicked or not
+    let startButtonClicked = false;
+    btn.addEventListener("click", () => {
+        startButtonClicked = true;
+        if (startButtonClicked) {
+            startScreen.classList.remove("active");
+            startScreen.classList.add("inactive");
+        }
+
+        quizQuestionScreen.classList.remove("inactive");
+        quizQuestionScreen.classList.add("active");
+        console.log("start button clicked" + startButtonClicked);
+        showQuestion();
+    });
+    console.log("startButtonClicked", startButtonClicked);
+
+    let currentQuestionIndex = 0;
+    const questionText = document.querySelector(".question-text");
+    const answerOptions = document.getElementById("answerOptions");
+    const spanElement = document.querySelector(".question-number span");
+    const scoreElement = document.querySelector(".score span");
+
+    const questions = [
+        {
+            question: "What is the capital of France?",
+            options: ["Berlin", "Madrid", "Paris", "Rome"],
+            answer: "Paris"
+        },
+        {
+            question: "What is 2 + 2?",
+            options: ["3", "4", "5", "6"],
+            answer: "4"
+        },
+        {
+            question: "What is the largest planet in our solar system?",
+            options: ["Earth", "Jupiter", "Mars", "Saturn"],
+            answer: "Jupiter"
+        }
+    ];
+
+    function showQuestion() {
+        const currentQuestion = questions[currentQuestionIndex];
+
+        questionText.textContent = currentQuestion.question;
+        spanElement.textContent = currentQuestionIndex + 1;
+        answerOptions.replaceChildren();
+
+
+
+        currentQuestion.options.forEach((option, index) => {
+            optionElement = document.createElement("p");
+            optionElement.classList.add("option");
+            optionElement.textContent = option;
+            
+
+            //adding event Listner
+            optionElement.addEventListener("click", () => {
+                let attempt = 0;
+                if (option == currentQuestion.answer) {
+                    console.log("Correct answer");
+                    if (attempt == 0) {
+                        scoreElement.textContent = parseInt(scoreElement.textContent) + 1;
+                    }
+                    currentQuestionIndex++;
+                    
+                }
+                else {
+                   console.log("currentQuestionIndex", currentQuestionIndex);
+                    console.log("Wrong answer");
+                    currentQuestionIndex++;
+                    //answerOptions.replaceChildren();
+                    alert("Wrong answer. Please try again.");
+                }
+                
+
+                if (currentQuestionIndex < questions.length) {
+                    showQuestion();
+                    
+                }
+                else {
+                    alert("Quiz completed!");
+                    answerOptions.replaceChildren();
+                }
+            })
+            //attempt++;
+            answerOptions.appendChild(optionElement);
+
+        })
+
+
+
+    }
+
+
+
+
+
+</script>
+
+</html>

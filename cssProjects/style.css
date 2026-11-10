@@ -1,0 +1,50 @@
+*{
+    box-sizing: border-box;
+}
+body{
+    line-height: 1.6;
+    background-color: rgb(248, 233, 215);
+    color: rgb(114, 85, 47);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+nav a{
+    text-decoration: none;
+
+}
+nav a:hover .card h2 , nav a:hover .card p {
+    color: rgb(106, 93, 32);
+}
+
+.card{
+    width: 280px;
+    padding: 20px;
+    border: 2px solid rgb(128, 99, 35) ;
+    border-radius: 8px;
+    margin: 16px;
+
+}
+
+.card p{
+    color:rgb(81, 97, 130);
+    margin-bottom: 0;
+}
+
+.card .highlight{
+    color:rgb(6, 6, 62);
+    font-weight: 600;
+}
+
+.card h2{
+    color:rgb(68, 50, 20);
+    margin-bottom: 8px;
+}
+
+h2{
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.card .warning{
+    color: red;
+    font-weight: bold;
+}
