@@ -1,4 +1,6 @@
 *{
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
 }
 body{
@@ -7,9 +9,17 @@ body{
     color: rgb(114, 85, 47);
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+
+header{
+    background-color:rgb(186, 165, 138); 
+    position:sticky;
+    top: 0;
+    
+}
 nav a{
     text-decoration: none;
-
+    display: inline-block;
+    /* width: 280px; */
 }
 nav a:hover .card h2 , nav a:hover .card p {
     color: rgb(106, 93, 32);
@@ -21,6 +31,7 @@ nav a:hover .card h2 , nav a:hover .card p {
     border: 2px solid rgb(128, 99, 35) ;
     border-radius: 8px;
     margin: 16px;
+    position: relative;
 
 }
 
@@ -38,6 +49,16 @@ nav a:hover .card h2 , nav a:hover .card p {
     color:rgb(68, 50, 20);
     margin-bottom: 8px;
 }
+.tag{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgb(128, 99, 35);
+     color: #fff;
+     padding: 2px 10px;
+     border-radius: 999px;
+     font-size: 0.75rem;
+}
 
 h2{
     font-size: 1.5rem;
@@ -48,3 +69,4 @@ h2{
     color: red;
     font-weight: bold;
 }
+

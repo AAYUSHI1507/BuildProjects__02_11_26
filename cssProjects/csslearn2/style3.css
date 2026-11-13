@@ -1,0 +1,62 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+
+}
+
+.navbar {
+            display: flex;
+            align-items: center;
+        }
+
+.navbar img{
+    padding: 10px;
+}
+
+.navbar nav {
+            margin-left: auto;
+            display: flex;
+            flex-wrap: wrap;
+            column-gap: 10px;
+}
+
+nav a{
+    padding:10px
+
+}
+/* Layout after the header tag */
+.layout{
+    display: flex;
+    flex: 1;
+}
+
+.layout aside{
+    flex: 0 0 200px;
+    background-color: rgb(141, 172, 173); /*Temprory purpose just checking space*/
+
+}
+
+section{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+
+}
+.content{
+    flex: 1;
+}
+section .card{
+    flex: 1 1 250px;
+    padding: 20px; background: #eee;
+}
+
+footer{
+    /* flex: 1; */
+}

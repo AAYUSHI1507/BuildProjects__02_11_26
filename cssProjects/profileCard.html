@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Card</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: rgb(32, 26, 35);
+        color: #fff;
+        line-height: 1.5;
+        
+    }
+    main{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 50px;
+        align-content: center;
+    }
+    .logo{
+        padding: 10px;
+    }
+    .profile-card {
+        position: relative;
+        background-color: #2E2532;
+        
+        width: 320px;
+        padding: 20px;
+        border-radius: 30px;
+    }
+
+    .status-badge {
+        position: absolute;
+        right: 20px;
+        background-color: green;
+        /*Can change dynamically color using js*/
+        padding: 5px;
+        border-radius: 20px;
+        border: 1px solid #9E4770;
+        box-shadow: inset 0px 0px 4px 1px;
+        font-size: smaller;
+    }
+
+
+    .avatar {
+        display: block;
+        margin: 0 auto 20px;
+        width: 120px;
+        height: 120px;
+        object-fit: cover;
+        border-radius: 50%;
+    }
+
+    h4 {
+        line-height: 0.5;
+        color: #631D76;
+    }
+
+    p {
+        margin-top: 10px;
+    }
+
+    .bio-links {
+        margin-top: 20px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .bio-links a {
+        display: inline-block;
+        background-color: #9E4770;
+        color: #fff;
+        text-decoration: none;
+        padding: 8px;
+        border-radius: 10px;
+        font-size: 0.8rem;
+        line-height: 1.6;
+    }
+
+    .bio-links a:last-child {
+        border: 1px solid #9E4770;
+        background-color: #2E2532;
+    }
+
+    .bio-links a:hover {
+        background-color: #652b46;
+        transition: ease-out;
+        transition-property: background-color;
+        transition-duration: 120ms;
+    }
+
+    .navbar{
+        display: flex;
+        justify-content:space-between;
+        align-items: center;
+        
+    }
+
+    .navbar a{
+        /*margin: 10px;*/
+        text-decoration: none;
+        color: #9E4770;
+        padding: 2px;
+        margin-right: 10px;
+        
+        
+    }
+    .navbar a:hover{
+        text-decoration: overline;
+        background-color: #9e47702b;
+        
+    }
+    .navbar nav{
+        display: flex;
+        gap: 16px;
+    }
+</style>
+
+<body>
+    <header class="navbar">
+        <div class="logo"><img src="https://d1csarkz8obe9u.cloudfront.net/posterpreviews/professional-company-logo-logo-design-template-d13176322c3d0a43692b023a894dbd68_e1e24567-94c7-4552-9ce7-c574e053cb7c_screen.png?ts=1763534820" alt="companyLogo" height="40" width="40"></div>
+        <nav>
+            <a href="#">Home</a>
+            <a href="#">Resume</a>
+        </nav>
+    </header>
+    <main>
+        <article class="profile-card">
+            <span class="status-badge">Available</span>
+            <img src="https://images.unsplash.com/photo-1581403341630-a6e0b9d2d257?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D"
+                alt="profile photo" width="120" height="130px" class="avatar">
+
+            <h2 class="name">Alicia Benersan</h2>
+            <h4>Software Developer</h4>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus impedit fuga est nulla dicta eveniet?</p>
+            <div class="bio-links">
+                <a href="#">Follow</a>
+                <a href="#">Message</a>
+            </div>
+
+        </article>
+    </main>
+</body>
+
+</html>
