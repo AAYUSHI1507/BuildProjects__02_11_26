@@ -5,29 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quiz Practice Test </title>
-    <style>
-        .start-screen.active,
-        .quizQuestionScreen.active {
-            display: block;
-        }
-
-        .quizQuestionScreen .inactive,
-        .start-screen.inactive {
-            display: none;
-        }
-
-        /* Add your CSS styles here */
-        .start-screen,
-        .quizQuestionScreen {
-            display: none;
-        }
-    </style>
+    
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
     <div class="container">
         <div class="start-screen active">
-            <h1>Quiz Practice Test</h1>
+            <h1>Quiz Practice Test !!</h1>
             <p>Test Your Knowledge with this fun questions</p>
             <button id="start-btn">Start Quiz</button>
         </div>
@@ -73,6 +58,7 @@
     const answerOptions = document.getElementById("answerOptions");
     const spanElement = document.querySelector(".question-number span");
     const scoreElement = document.querySelector(".score span");
+    const optionEle = document.querySelector('.option');
 
     const questions = [
         {
@@ -112,6 +98,8 @@
                 let attempt = 0;
                 if (option == currentQuestion.answer) {
                     console.log("Correct answer");
+                    optionElement.classList.add("success");
+                    //alert('correct answer');
                     if (attempt == 0) {
                         scoreElement.textContent = parseInt(scoreElement.textContent) + 1;
                     }

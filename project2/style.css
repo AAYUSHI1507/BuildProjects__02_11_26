@@ -1,0 +1,120 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    line-height: 1.6;
+    background-color: rgb(248, 233, 215);
+    color: rgb(114, 85, 47);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.container{
+    display: flex;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0px 3px 11px 0px black;
+    background-color: white;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    min-height: 30vh;
+    
+
+}
+
+.start-screen.active,
+.quizQuestionScreen.active {
+    /* display: block; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 15px;
+}
+
+.quizQuestionScreen .inactive,
+.start-screen.inactive {
+    display: none;
+}
+
+/* Add your CSS styles here */
+.start-screen,
+.quizQuestionScreen {
+    display: none;
+}
+
+h1{
+    color: orangered;
+    font-size: 1.7rem;
+}
+.start-screen p{
+    color: black;
+}
+
+#start-btn{
+    background-color: orangered;
+    padding: 15px;
+    border-radius: 10px;
+    border: none;
+    color: white;
+    font-size: 1.1rem;
+}
+
+#start-btn:hover{
+    background-color: rgb(202, 74, 27);
+    transition-property: 'background-color';
+    transition-duration: 30ms;
+    cursor: pointer;
+}
+/* Quiz screen */
+.question-text{
+    color: black;
+    font-size: medium;
+    width: 100%;
+}
+
+.quizHead{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    
+}
+.question-number, .score{
+    color: rgb(72, 65, 65);
+    font-size: smaller;
+}
+
+.answerOptions{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    min-width: 100%;
+    font-size: small;
+}
+
+.option{
+   
+    background-color: blanchedalmond;
+    /* flex: 0 0 100%; */
+    min-width: 100%;
+    margin-bottom: 5px;
+    padding: 5px;
+    border-radius: 10px;
+    border: 1px solid rosybrown;
+    font-size: smaller;
+    color: black;
+}
+
+.success{
+    background-color: aquamarine;
+    border: 1px solid rgb(26, 155, 112);
+}
+
