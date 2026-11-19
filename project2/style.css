@@ -16,38 +16,38 @@ body {
     min-height: 100vh;
 }
 
-.container{
+.container {
     display: flex;
     padding: 20px;
-    border-radius: 20px;
+    width: min(100% - 32px, 520px);
+    min-height: 260px;
+    border-radius: 12px;
     box-shadow: 0px 3px 11px 0px black;
     background-color: white;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 20px;
-    min-height: 30vh;
-    
-
 }
 
 .start-screen.active,
-.quizQuestionScreen.active {
-    /* display: block; */
+.quizQuestionScreen.active,
+.results-screen.active {
     display: flex;
     flex-direction: column;
     align-items: center;
     row-gap: 15px;
 }
 
-.quizQuestionScreen .inactive,
-.start-screen.inactive {
+.start-screen.inactive,
+.quizQuestionScreen.inactive,
+.results-screen.inactive {
     display: none;
 }
 
-/* Add your CSS styles here */
 .start-screen,
-.quizQuestionScreen {
+.quizQuestionScreen,
+.results-screen {
     display: none;
 }
 
@@ -68,6 +68,16 @@ h1{
     font-size: 1.1rem;
 }
 
+#restart-btn {
+    background-color: orangered;
+    padding: 12px 18px;
+    border-radius: 8px;
+    border: none;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
 #start-btn:hover{
     background-color: rgb(202, 74, 27);
     transition-property: 'background-color';
@@ -85,7 +95,8 @@ h1{
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    
+    width: 100%;
+    gap: 8px;
 }
 .question-number, .score{
     color: rgb(72, 65, 65);
@@ -95,26 +106,44 @@ h1{
 .answerOptions{
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    min-width: 100%;
+    align-items: stretch;
+    width: 100%;
     font-size: small;
 }
 
 .option{
-   
+    width: 100%;
     background-color: blanchedalmond;
-    /* flex: 0 0 100%; */
-    min-width: 100%;
     margin-bottom: 5px;
-    padding: 5px;
-    border-radius: 10px;
+    padding: 10px;
+    border-radius: 8px;
     border: 1px solid rosybrown;
     font-size: smaller;
     color: black;
+    text-align: left;
+    cursor: pointer;
 }
 
-.success{
-    background-color: aquamarine;
+.option:disabled {
+    cursor: default;
+}
+
+.option.success {
+    background-color: #b7efcf;
     border: 1px solid rgb(26, 155, 112);
+}
+
+.option.error {
+    background-color: #ffd2cc;
+    border: 1px solid #d64545;
+}
+
+.results-screen h2 {
+    color: orangered;
+}
+
+.results-score {
+    color: black;
+    font-size: 1.1rem;
 }
 
