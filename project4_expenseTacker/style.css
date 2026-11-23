@@ -12,3 +12,8 @@ body{
     min-height: 100vh;
     background: linear-gradient(135deg,#2e8b57,#a8d5ba);
 }
+
+.container{
+    /* text-align: center; */
+    display: flex;
+}
