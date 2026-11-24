@@ -8,7 +8,8 @@ body{
     font-family: "poppins","sanserif";
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
+    margin-top: 20px;
     min-height: 100vh;
     background: linear-gradient(135deg,#2e8b57,#a8d5ba);
 }
@@ -18,4 +19,71 @@ body{
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin: 10px;
+    background-color: rgb(237, 247, 238);
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow:  0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.balance-container{
+    /* background-color: #a8d5ba; */
+    background: linear-gradient(45deg,  #a8d5ba,#42a62e);
+    padding: 10px;
+    margin: 10px;
+    width: 100%;
+    border-radius: 10px;
+    text-align: center;
+    
+}
+.container h1{
+    font-size: larger;
+}
+
+.balance-container h3{
+    font-size: smaller;
+    font-weight: 500;
+}
+.summary{
+    display: flex;
+    justify-content: space-around;
+    margin-top: 1.2rem;
+}
+.income,.expense{
+    background-color: rgb(237, 247, 238);
+    width: 47%;
+    border-radius: 10px;
+}
+.expense>p,.income>p{
+    font-weight: 700;
+    font-size: x-large;
+    line-height: -3px;
+}
+.income{
+    color: #42a62e;
+    
+}
+.expense{
+    color: rgb(178, 36, 36);
+}
+.main-content{
+    display: flex;
+    justify-content: space-between;
+    column-gap: 20px;
+    /* flex-wrap: wrap; */
+}
+
+.transaction-Container{
+    min-width: 40%;
+    padding: 10px;
+}
+
+.transaction-Form-container{
+    padding: 10px;
+}
+
+@media (max-width: 600px) {
+    .main-content{
+        flex-direction: column;
+    }
 }
