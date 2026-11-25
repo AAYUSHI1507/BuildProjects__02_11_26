@@ -82,10 +82,33 @@ body{
     font-weight: 600;
     margin-bottom: 10px;
 }
+
+.transaction-Container ul li{
+    list-style: none;
+    background-color: #e4f4ea;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 5px 0px 0px 0px #bc0404;
+    
+}
+.transaction-item{
+    display: flex;
+    justify-content: space-around; 
+}
+.transaction-item i{
+    font-size: smaller;
+    opacity: 0; 
+    /* cross will be visible if opacity is 1 will do it through js */
+}
+.over{
+    opacity: 1;
+}
 /* Transaction Form container */
 .transaction-Form-container{
     padding: 10px;
     background-color: rgb(242, 245, 247);
+    height: 100%;
+    border-radius: 10px;
 }
 
 .transaction-Form-container h2{
