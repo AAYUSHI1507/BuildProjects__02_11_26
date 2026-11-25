@@ -70,18 +70,70 @@ body{
     display: flex;
     justify-content: space-between;
     column-gap: 20px;
-    /* flex-wrap: wrap; */
 }
 
+/* Transaction List container */
 .transaction-Container{
     min-width: 40%;
     padding: 10px;
 }
-
+.transaction-Container h2{
+    font-size: medium;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+/* Transaction Form container */
 .transaction-Form-container{
     padding: 10px;
+    background-color: rgb(242, 245, 247);
 }
 
+.transaction-Form-container h2{
+    font-size: medium;
+    font-weight: 600;
+    margin-bottom: 10px;
+
+}
+.form-group label{
+    font-size: smaller;
+    /* width: 100%; */
+    margin: 5px;
+
+}
+.form-group input{
+    width: 100%;
+    padding: 10px;
+    border: none;
+    color: darkslategray;
+}
+
+.form-group{
+    margin-bottom: 10px;
+}
+
+.form-group small{
+    font-size: x-small;
+    color: darkslategray;
+}
+
+.transaction-Form-container button{
+    background: linear-gradient(135deg,  #5db982,#42a62e);;
+    color: whitesmoke;
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    font-weight: 550;
+}
+.transaction-Form-container button:hover{
+    transform: scaleY(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1) ;
+}
+.transaction-Form-container button:active{
+    transform: scaleY(1.00);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1) ;
+
+}
 @media (max-width: 600px) {
     .main-content{
         flex-direction: column;
