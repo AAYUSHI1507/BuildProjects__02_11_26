@@ -91,6 +91,9 @@ body{
     box-shadow: 5px 0px 0px 0px #bc0404;
     
 }
+.transaction-Container ul li:hover{
+    box-shadow: 0 2px 4px rgb(61, 27, 27);
+}
 .transaction-item{
     display: flex;
     justify-content: space-around; 

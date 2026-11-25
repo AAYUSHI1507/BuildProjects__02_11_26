@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grid Template area test</title>
+    <style>
+        .page {
+            display: grid;
+            grid-template-columns: 200px 1fr 1fr;
+            grid-template-areas:
+                "header  header header"
+                "navSide  main  sidebar"
+                "footer  footer footer";
+        }
+
+        header {
+            grid-area: header;
+            background-color: aquamarine;
+        }
+
+        nav {
+            grid-area: navSide;
+            background-color: palevioletred;
+        }
+
+        aside {
+            grid-area: sidebar;
+            background-color: gray;
+        }
+
+        main {
+            grid-area: main;
+            background-color: chocolate;
+        }
+
+        footer {
+            grid-area: footer;
+            background-color: aqua;
+        }
+
+        /* Mobile: redraw the map, no HTML changes needed */
+        @media (max-width: 500px) {
+            .page {
+                grid-template-columns: 1fr;
+                /* one column only */
+                grid-template-rows: auto;
+                /* let rows size to content */
+                grid-template-areas:
+                    "header"
+                    "navSide"
+                    "main"
+                    "sidebar"
+                    "footer";
+                /* sidebar now sits below main */
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page">
+        <header class="header">
+            <h4>This is the header</h4>
+        </header>
+        <nav>This is nav</nav>
+        <main>this is main</main>
+        <aside class="add">this is add aside</aside>
+        <footer>This is the footer</footer>
+    </div>
+</body>
+
+</html>
