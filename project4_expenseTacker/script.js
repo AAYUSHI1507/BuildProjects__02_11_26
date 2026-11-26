@@ -20,6 +20,7 @@ function addTransactions(event) {
     const amount = transAmountForm.value.trim();
 
     updateTransactionList(description, amount);
+    BalanceIncomeExpenseSummaryUpdate();
     transactionformEl.reset();
 }
 
@@ -72,6 +73,7 @@ function handleListClick(event) {
 function DeleteFunctionality(id) {
     transactionList = transactionList.filter(ele => ele.id !== id);
     saveTransactions();
+    BalanceIncomeExpenseSummaryUpdate();
     showTransactionList();
 }
 
@@ -80,7 +82,38 @@ function saveTransactions() {
 }
 
 function BalanceIncomeExpenseSummaryUpdate() {
+    let incomeArr = [];
+    let expenseArr = [];
 
+    transactionList.forEach(ele => {
+        console.log(ele);
+        if (ele.amount.includes('-')) {
+            expenseArr.push(parseFloat(ele.amount.replace('-', '')));
+        }
+        else {
+            incomeArr.push(parseFloat(ele.amount));
+        }
+
+    })
+    let totalIncome = incomeArr.reduce((accumulator, currentValue) =>
+            accumulator + currentValue, 0
+        );
+
+        let totalExpense = expenseArr.reduce((accumulator, currentValue) =>
+            accumulator + currentValue, 0
+        );
+
+        incomeAmtSummary.textContent = '$'+ totalIncome;
+
+        expenseSummary.textContent = '$'+totalExpense
+
+        TotalbalanceUpdate(totalIncome,totalExpense)
+    
 }
 
+function TotalbalanceUpdate(income,expense) {
+    let balance = income - expense;
+    balanceAmt.textContent = '$'+balance;
+}
+BalanceIncomeExpenseSummaryUpdate();
 showTransactionList();
