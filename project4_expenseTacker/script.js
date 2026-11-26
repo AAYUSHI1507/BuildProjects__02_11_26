@@ -1,104 +1,86 @@
-// const { dateTimeValue } = require("docx");
+const STORAGE_KEY = 'transAmountlist';
 
-// Only use of the container for updating income and expense amount or update existing amount.like total income and total expense
-let balanceAmt = document.getElementById('balance-amount');
+const balanceAmt = document.getElementById('balance-amount');
+const incomeAmtSummary = document.getElementById('income-amount');
+const expenseSummary = document.getElementById('expense-amount');
 
-let incomeAmtSummary = document.getElementById('income-amount');
+const transactionformEl = document.getElementById('transactionForm');
+const transDescForm = document.getElementById('trans_Desc');
+const transAmountForm = document.getElementById('trans_amount');
+const transactionListUI = document.getElementById('transaction-list');
 
-let expenseSummary = document.getElementById('expense-amount');
-
-//getting variables from the form
-
-let transactionformEl = document.getElementById('transactionForm');
-
-let transDescForm = document.getElementById('trans_Desc');
-
-let transAmountForm = document.getElementById('trans_amount');
-
-// local storage usage
-let transactionList = JSON.parse(localStorage.getItem('transAmountlist')) || [];
-
-let transactionListUI = document.getElementById('transaction-list');
+let transactionList = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
 
 transactionformEl.addEventListener('submit', addTransactions);
-
-// console.log('Outside function ')
+transactionListUI.addEventListener('click', handleListClick);
 
 function addTransactions(event) {
     event.preventDefault();
     const description = transDescForm.value.trim();
     const amount = transAmountForm.value.trim();
 
-    console.log('inside functions'+ amount.includes('-'));
-
-    console.log(description + ' ' + amount);
-    updateTransactionList(description, amount)
+    updateTransactionList(description, amount);
+    transactionformEl.reset();
 }
-let dateNow = new Date();
 
 function updateTransactionList(description, amount) {
-    transactionListUI.innerHTML = '';
     transactionList.push({
         id: Date.now(),
-        "description": description,
-        "amount": amount,
-        "Date": dateNow.toDateString(),
+        description,
+        amount,
+        Date: new Date().toDateString(),
     });
 
-    localStorage.setItem('transAmountlist', JSON.stringify(transactionList));
-
+    saveTransactions();
     showTransactionList();
 }
 
 function showTransactionList() {
-    // local storage usage
-    let transList = JSON.parse(localStorage.getItem('transAmountlist')) || [];
+    transactionListUI.innerHTML = '';
 
-    transList.forEach(element => {
-        let listEle = document.createElement('li');
-        let divInList = document.createElement('div');
+    transactionList.forEach(element => {
+        const isExpense = element.amount.startsWith('-');
 
-        divInList.innerHTML = `
-        <span>${element.description}</span>
-        <span>${(element.amount[0]=="-"?"-":"")+'$'+element.amount.replace('-','')}</span>
-        <button type="button" class="delete-btn" aria-label="Delete transaction" onclick="DeleteFunctionality(event,${element.id})">
-                                <i class="fa-solid fa-xmark"></i>
-                            </button>
-        <span style="font-size: xx-small;">${element.Date}</span>
-        `;
-        
+        const listEle = document.createElement('li');
+        listEle.classList.add(isExpense ? 'transaction--expense' : 'transaction--income');
+
+        const divInList = document.createElement('div');
         divInList.classList.add('transaction-item');
+        divInList.innerHTML = `
+            <span></span>
+            <span>${isExpense ? '-' : ''}$${element.amount.replace('-', '')}</span>
+            <button type="button" class="delete-btn" aria-label="Delete transaction" data-id="${element.id}">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <span style="font-size: xx-small;">${element.Date}</span>
+        `;
+        // textContent keeps user-entered text from being parsed as HTML
+        divInList.firstElementChild.textContent = element.description;
 
         listEle.appendChild(divInList);
-         if(element.amount.includes('-')){
-            listEle.classList.add('transaction--expense');
-        }else{
-        listEle.classList.add('transaction--income')}
-       
         transactionListUI.appendChild(listEle);
     });
-
-
 }
 
-function DeleteFunctionality(eve, index) {
-    eve.preventDefault();
-    console.log(eve);
-    console.log(eve.id);
-    console.log(index);
+function handleListClick(event) {
+    const deleteBtn = event.target.closest('.delete-btn');
+    if (deleteBtn) {
+        DeleteFunctionality(Number(deleteBtn.dataset.id));
+    }
+}
 
-    // event.preventDefault();
-    // console.log('Before deleted item list:'+typeof (transactionList));
-    // console.log(transactionList);
-    // console.log("In delete functionality deleted item"+ index);
-    
-    transactionList.toArray.splice(index,1);
-    console.log(transactionList);
-    localStorage.setItem("transAmountlist", JSON.stringify(transactionList)); // Update storage
-    showTransactionList(); // Update UI
+function DeleteFunctionality(id) {
+    transactionList = transactionList.filter(ele => ele.id !== id);
+    saveTransactions();
+    showTransactionList();
+}
+
+function saveTransactions() {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(transactionList));
 }
 
 function BalanceIncomeExpenseSummaryUpdate() {
 
 }
+
 showTransactionList();
