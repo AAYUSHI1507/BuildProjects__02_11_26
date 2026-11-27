@@ -18,10 +18,43 @@ function addTransactions(event) {
     event.preventDefault();
     const description = transDescForm.value.trim();
     const amount = transAmountForm.value.trim();
+    const amountNum = parseFloat(amount);
+
+    // Reject empty description, non-numeric or zero amounts
+    if (!description || isNaN(amountNum) || amountNum === 0) {
+        showNotification('Please enter a valid description and a non-zero amount', 'error');
+        return;
+    }
+
+    // Expense must not exceed the current balance
+    if (amountNum < 0 && Math.abs(amountNum) > getCurrentBalance()) {
+        showNotification('Not enough balance', 'error');
+        return;
+    }
 
     updateTransactionList(description, amount);
     BalanceIncomeExpenseSummaryUpdate();
     transactionformEl.reset();
+    showNotification('The transaction is successfully added', 'success');
+}
+
+function getCurrentBalance() {
+    const total = transactionList.reduce((sum, ele) => sum + (parseFloat(ele.amount) || 0), 0);
+    return Math.round(total * 100) / 100; // avoid float errors like 0.1 + 0.2
+}
+
+function showNotification(message, type) {
+    let toast = document.getElementById('notification');
+    if (!toast) {
+        toast = document.createElement('div');
+        toast.id = 'notification';
+        toast.setAttribute('role', 'alert');
+        document.body.appendChild(toast);
+    }
+    toast.textContent = message;
+    toast.className = `notification notification--${type} notification--show`;
+    clearTimeout(showNotification.timer);
+    showNotification.timer = setTimeout(() => toast.classList.remove('notification--show'), 3000);
 }
 
 function updateTransactionList(description, amount) {
@@ -86,12 +119,13 @@ function BalanceIncomeExpenseSummaryUpdate() {
     let expenseArr = [];
 
     transactionList.forEach(ele => {
-        console.log(ele);
-        if (ele.amount.includes('-')) {
-            expenseArr.push(parseFloat(ele.amount.replace('-', '')));
+        const value = parseFloat(ele.amount);
+        if (isNaN(value)) return; // skip corrupted entries
+        if (value < 0) {
+            expenseArr.push(Math.abs(value));
         }
         else {
-            incomeArr.push(parseFloat(ele.amount));
+            incomeArr.push(value);
         }
 
     })
@@ -103,9 +137,9 @@ function BalanceIncomeExpenseSummaryUpdate() {
             accumulator + currentValue, 0
         );
 
-        incomeAmtSummary.textContent = '$'+ totalIncome;
+        incomeAmtSummary.textContent = '$'+ totalIncome.toFixed(2);
 
-        expenseSummary.textContent = '$'+totalExpense
+        expenseSummary.textContent = '$'+totalExpense.toFixed(2);
 
         TotalbalanceUpdate(totalIncome,totalExpense)
     
@@ -113,7 +147,7 @@ function BalanceIncomeExpenseSummaryUpdate() {
 
 function TotalbalanceUpdate(income,expense) {
     let balance = income - expense;
-    balanceAmt.textContent = '$'+balance;
+    balanceAmt.textContent = (balance < 0 ? '-$' : '$') + Math.abs(balance).toFixed(2);
 }
 BalanceIncomeExpenseSummaryUpdate();
 showTransactionList();
