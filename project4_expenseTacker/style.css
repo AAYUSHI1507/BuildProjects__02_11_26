@@ -1,0 +1,250 @@
+/* ---------- Reset ---------- */
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ---------- Base ---------- */
+body {
+    font-family: "Poppins", sans-serif;   /* fixed spelling, no quotes on the generic name */
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    padding: 20px 10px;                   /* padding instead of margin-top: no extra scrollbar */
+    background: linear-gradient(135deg, #2e8b57, #a8d5ba);
+}
+
+/* Inputs and buttons don't inherit the font by default */
+input,
+button {
+    font: inherit;
+}
+
+/* ---------- Container ---------- */
+.container {
+    width: 100%;
+    max-width: 720px;                     /* stops the card changing width as content changes */
+    display: flex;
+    flex-direction: column;
+    gap: 16px;                            /* spacing lives on the parent, not as child margins */
+    background-color: rgb(237, 247, 238);
+    padding: 16px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.container h1 {
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+/* ---------- Balance ---------- */
+.balance-container {
+    background: linear-gradient(45deg, #a8d5ba, #42a62e);
+    padding: 12px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.balance-container h2 {
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+.balance-amount {
+    font-size: 1.75rem;
+    font-weight: 700;
+}
+
+/* Two equal cards without width: 47% guessing */
+.summary {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 1.2rem;
+}
+
+.income,
+.expense {
+    background-color: rgb(237, 247, 238);
+    padding: 8px;
+    border-radius: 10px;
+}
+
+.income h3,
+.expense h3 {
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+.income > p,
+.expense > p {
+    font-weight: 700;
+    font-size: 1.5rem;
+}
+
+.income {
+    color: #2f7d1f;
+}
+
+.expense {
+    color: rgb(178, 36, 36);
+}
+
+/* ---------- Main content: mobile first ---------- */
+.main-content {
+    display: grid;
+    gap: 20px;                            /* one column by default (phones) */
+}
+
+@media (min-width: 700px) {
+    .main-content {
+        grid-template-columns: 3fr 2fr;   /* list is wider than the form */
+    }
+}
+
+/* ---------- Transaction list ---------- */
+.transactions {
+    padding: 10px;
+}
+
+.transactions h2,
+.transaction-form h2 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.transaction-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;                             /* items no longer touch */
+}
+
+.transaction-list li {
+    background-color: #e4f4ea;
+    padding: 10px;
+    border-radius: 5px;
+    border-left: 5px solid #bc0404; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);}
+
+/* Modifier classes: add these from JS depending on the amount */
+.transaction-list .transaction--income {
+    border-left-color: #2f7d1f;
+}
+
+.transaction-list .transaction--expense {
+    border-left-color: #bc0404;
+}
+
+.transaction-list li:hover {
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+/* description | amount | delete button. */
+.transaction-item {
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    gap: 12px;
+    align-items: center;
+}
+
+.delete-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: inherit;
+    font-size: 0.85rem;
+    opacity: 0;                           /* hidden until hover or keyboard focus */
+    transition: opacity 0.15s;
+}
+
+.transaction-list li:hover .delete-btn,
+.delete-btn:focus-visible {
+    opacity: 1;
+}
+
+/* ---------- Form ----------- */
+.transaction-form {
+    padding: 10px;
+    background-color: rgb(242, 245, 247);
+    border-radius: 10px;
+}
+
+.form-group {
+    margin-bottom: 10px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 0.8rem;
+    margin-bottom: 4px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #cfd8dc;
+    border-radius: 5px;
+    color: darkslategray;
+}
+
+.form-group small {
+    font-size: 0.7rem;
+    color: darkslategray;
+}
+
+.transaction-form button {
+    /* darker greens so white text passes contrast: verify in DevTools */
+    background: linear-gradient(135deg, #2f855a, #276749);
+    color: whitesmoke;
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.transaction-form button:hover {
+    transform: scaleY(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.transaction-form button:active {
+    transform: scaleY(1);
+}
+
+.notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 12px 20px;
+    border-radius: 5px;
+    color: whitesmoke;
+    font-weight: 600;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-10px);
+    transition: opacity 0.3s, transform 0.3s;
+    z-index: 1000;
+}
+
+.notification--show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.notification--success {
+    background: #276749;
+}
+
+.notification--error {
+    background: #c53030;
+}

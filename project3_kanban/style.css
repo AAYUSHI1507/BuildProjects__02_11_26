@@ -1,0 +1,92 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+
+}
+
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    font-family: sans-serif;
+    background-color: aliceblue;
+    color: rgb(52, 51, 51);
+}
+
+.container{
+    text-align: center;
+    padding: 0.5rem;
+    width: 100%;
+
+}
+.container h1{
+    margin-bottom: 10px;
+    font-size: 2rem;
+}
+.board{
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    width: 100%;
+    gap: 1.2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.list{
+    background-color: rgb(201, 207, 213);
+    padding: 1rem;
+    border-radius: 10px;
+    min-height: 400px;
+    width: 30%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.list h2{
+    color: #555;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+.card{
+    background-color: whitesmoke;
+    padding: 1rem;
+    border-radius: 8px;
+    color: #333;
+    margin-bottom: 10px;
+    cursor: grab;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: all 0.2s;
+}
+
+.card:active{
+    cursor: grabbing;
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.list.over {
+  background-color: #9e9fa1;
+}
+
+@media (max-width: 700px) {
+  .board {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .list {
+    width: 80%;
+    margin-bottom: 20px;
+  }
+}
+
+
+/* Just test purpose later delete it */
+.dragging {
+  background-color: pink;
+}

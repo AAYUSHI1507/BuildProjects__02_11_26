@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Tracker</title>
+    <!-- Only the weights we actually use -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css"
+        integrity="sha512-QeR2VH+lsBE5LSAe1Q5EnTBbe7XTBubt8dG93Y7gidSgdMCr8nVqKcfKAMyN96SV8KDbZVTDXChatu5G2KQGzg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <main class="container">
+        <h1>Expense Tracker</h1>
+
+        <section class="balance-container">
+            <h2>Your Balance</h2>
+            <p class="balance-amount" id="balance-amount">$ 0</p>
+            <div class="summary">
+                <div class="income">
+                    <h3>Income</h3>
+                    <p id="income-amount">$ 0</p>
+                </div>
+                <div class="expense">
+                    <h3>Expense</h3>
+                    <p id="expense-amount">$ 0</p>
+                </div>
+            </div>
+        </section>
+
+        <div class="main-content">
+            <section class="transactions">
+                <h2>Transactions</h2>
+                <ul class="transaction-list" id="transaction-list">
+                    <!-- Transactions are added here through JS.
+                         JS should add transaction--income or transaction--expense to each li -->
+                    <!-- <li class="transaction--expense">
+                        <div class="transaction-item">
+                            <span>Description</span>
+                            <span>amount</span>
+                            <button type="button" class="delete-btn" aria-label="Delete transaction">
+                                <i class="fa-solid fa-xmark"></i>
+                            </button>
+                            <span style="font-size: xx-small;">Date: </span>
+                        </div>
+                    </li> -->
+                </ul>
+            </section>
+
+            <section class="transaction-form">
+                <h2>Add Transaction</h2>
+                <form id="transactionForm">
+                    <div class="form-group">
+                        <!-- for="" must match the input's id -->
+                        <label for="trans_Desc">Description</label>
+                        <input type="text" name="Description_trans" id="trans_Desc" placeholder="Enter Description..."
+                            required>
+                    </div>
+                    <div class="form-group">
+                        <label for="trans_amount">Amount</label>
+                        <input type="number" name="transaction_amount" id="trans_amount" placeholder="Enter Amount..."
+                            required>
+                        <small>Use negative (-) for expenses</small>
+                    </div>
+
+                    <button type="submit">Add Transaction</button>
+                </form>
+            </section>
+        </div>
+    </main>
+    
+</body>
+<script src="/project4_expenseTacker/script.js"></script>
+</html>
